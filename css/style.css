@@ -1,0 +1,62 @@
+body{
+    background-color: #EDEDED;
+}
+
+header{
+    background-color: #1F6EA6;
+}
+
+footer{
+    background-color: #6F7F81;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+}
+
+.menu{
+    display: none;
+    width: 100%;
+}
+
+.menu.open{
+    display: block;
+}
+
+
+
+@media (min-width: 768px){
+
+    .menuBtn{
+        display: none;
+    }
+
+    .menu{
+        display: block;
+    }
+
+    .menu ul{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .menu ul li{
+        font-size: 20px;
+    }
+
+    header{
+        padding: 20px;
+    }
+
+    
+
+}
