@@ -1,5 +1,6 @@
 body{
     background-color: #EDEDED;
+    margin: 0;
 }
 
 header{
@@ -11,7 +12,7 @@ footer{
 }
 
 ul{
-    list-style: none;
+    list-style-type: none;
 }
 
 a{
@@ -26,10 +27,26 @@ h1{
 .menu{
     display: none;
     width: 100%;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li{
+    padding: 5px;
+    border-top: 5px solid black;
+}
+
+.menu ul li a:hover{
+    color:#EDEDED;
 }
 
 .menu.open{
     display: block;
+}
+
+.menuBtn{
+    font-size: 30px;
 }
 
 
