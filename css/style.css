@@ -56,7 +56,7 @@ h1{
     font-size: 30px;
 }
 
-main{
+.indexmain{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,6 +73,22 @@ main{
     text-align: center;
     width: 80%;
     padding-bottom: 20px;
+}
+
+.products{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    row-gap: 50px;
+}
+
+.productcard{
+    text-align: center;
+}
+
+.productcard img{
+    width:100%;
 }
 
 
@@ -120,6 +136,22 @@ main{
         width: 50%;
     }
 
-    
+    .products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    }
 
+    .productcard img{
+        max-height: 50%;
+    }
+
+
+    .productcard:hover{
+        cursor:pointer;
+    }
 }
+
