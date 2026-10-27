@@ -44,6 +44,10 @@ h1{
     background-color: #6F7F81;
 }
 
+.menu ul li:hover{
+    background-color: #EDEDED;
+}
+
 .menu ul li a:hover{
     color:#EDEDED;
 }
@@ -85,10 +89,43 @@ h1{
 
 .productcard{
     text-align: center;
+    will-change: filter;
+    transition: filter .2s ease-out;
 }
 
 .productcard img{
     width:100%;
+}
+
+.productcard:hover{
+        cursor:pointer;
+        filter: drop-shadow(0px 0px 20px black);
+    }
+
+#lightbox{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+}
+
+#lightbox.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerStyle{
+    background-color: #EDEDED;
+    padding: 20px;
+    text-align: center;
+}
+
+.containerStyle img{
+    width: 100%;
 }
 
 
@@ -112,6 +149,10 @@ h1{
         font-size: 20px;
         border-top:none;
         background-color:#1F6EA6;
+    }
+
+    .menu ul li:hover{
+        background-color: #1F6EA6;
     }
 
     header{
@@ -149,9 +190,12 @@ h1{
         max-height: 50%;
     }
 
+    .containerStyle{
+        width: 50%;
+    }
 
-    .productcard:hover{
-        cursor:pointer;
+    .containerStyle img{
+        width: 50%;
     }
 }
 
