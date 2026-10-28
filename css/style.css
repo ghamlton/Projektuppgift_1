@@ -48,16 +48,14 @@ h1{
     background-color: #EDEDED;
 }
 
-.menu ul li a:hover{
-    color:#EDEDED;
-}
-
 .menu.open{
     display: block;
 }
 
 .menuBtn{
     font-size: 30px;
+    background-color:#6F7F81;
+
 }
 
 .indexmain{
@@ -84,23 +82,28 @@ h1{
     flex-direction: column;
     margin-left: 20px;
     margin-right: 20px;
-    row-gap: 50px;
 }
 
 .productcard{
     text-align: center;
-    will-change: filter;
-    transition: filter .2s ease-out;
 }
 
 .productcard img{
-    width:100%;
+    width: 100%;
 }
 
-.productcard:hover{
-        cursor:pointer;
-        filter: drop-shadow(0px 0px 20px black);
-    }
+.productcard button{
+    background-color:#1F6EA6;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.productcard button:hover{
+    background-color: #EDEDED;
+}
 
 #lightbox{
     position: fixed;
@@ -122,6 +125,7 @@ h1{
     background-color: #EDEDED;
     padding: 20px;
     text-align: center;
+    border-radius: 10px;
 }
 
 .containerStyle img{
@@ -155,6 +159,10 @@ h1{
         background-color: #1F6EA6;
     }
 
+    .menu ul li a:hover{
+        color:#EDEDED;
+    }
+
     header{
         padding: 15px;
     }
@@ -180,15 +188,27 @@ h1{
     .products{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 50px;
+    column-gap: 100px;
     margin-left: 20px;
     margin-right: 20px;
     text-align: center;
     }
 
     .productcard img{
-        max-height: 50%;
+        height: 30%;
+        width: 50%;
+        object-fit: fill;
     }
+
+    .productcard{
+    will-change: filter;
+    transition: filter .2s ease-out;
+    }
+
+    .productcard:hover{
+    cursor:pointer;
+    filter: drop-shadow(5px 5px 20px black);
+    }   
 
     .containerStyle{
         width: 50%;

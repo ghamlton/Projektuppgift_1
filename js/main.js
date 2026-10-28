@@ -51,7 +51,7 @@ productCards.forEach(card => {
 
             image.src = "/images/ps5pro.webp"
             title.textContent = "Playstation 5 Pro 2TB";
-            description.textContent = "Testing 123";
+            description.textContent = "Den mest kraftfulla konsolen i den nuvarande konsol-generationen är här! Med 2TB ultrasnabb SSD och med förmågan att spela PS5-spel i kristallklar 4K och upp till 60FPS! Nu när släppet av Grand Theft Auto VI nalkas, så har dessa konsoler blivit mycket svåra att hitta. Men vilken tur att vi då har flera exemplar av denna konsol, perfekt för dig som vill avnjuta det nya GTA VI (eller andra spel) på bästa möjliga sätt!";
 
             container.appendChild(title);
             container.appendChild(description);
@@ -73,7 +73,7 @@ productCards.forEach(card => {
 
             container.classList.add("containerStyle");
 
-            title.textContent = "Nvidia Geforce RTX 5090";
+            title.textContent = "NVIDIA GeForce RTX 5090";
 
             container.appendChild(title);
 
@@ -82,6 +82,10 @@ productCards.forEach(card => {
             }
 
             lightbox.appendChild(container);
+        }
+
+        else if(card.id == "steamcube"){
+            
         }
     })
 })
