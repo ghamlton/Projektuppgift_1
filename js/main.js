@@ -1,96 +1,117 @@
 "use strict";
 
+let basket = [];
+
 const menuButton = document.querySelector(".menuBtn");
 const menu = document.querySelector(".menu");
 
-menuButton.addEventListener("click", function(){
-    menu.classList.toggle("open");
-})
+const buySwitch2 = document.querySelector(".buySwitch");
+const buyPS5Pro = document.querySelector(".buyPS5");
+const buy5090 = document.querySelector(".buyRTX");
+const buySteamCube = document.querySelector(".buyCube");
 
+const basketButton = document.querySelector(".basket");
 
 const lightbox = document.createElement("div");
 lightbox.id = "lightbox";
 document.body.appendChild(lightbox);
 
-const productCards = document.querySelectorAll(".productcard");
-productCards.forEach(card => {
-    card.addEventListener("click", e => {
-        lightbox.classList.add("active");
-        if(card.id == "switch2"){
 
-            let container = document.createElement("article");
-            let image = document.createElement("img");
-            let title = document.createElement("h3");
-            let description = document.createElement("p");
 
-            container.classList.add("containerStyle")
+function addToBasket(name, price){
 
-            image.src = "/images/lozswitch2.webp";
-            title.textContent = "Switch 2 LOZ Edition";
-            description.textContent = "En begränsad upplaga av Nintendo Switch 2 med LOZ-tema inför 40-års jubileum av den ikoniska spelserien! Sedan den utannonserades har den snabbt sålt ut hos flera stora återförsäljare. Lyckligtvis har vi lyckats få tag på flera exemplar, och en kan bli din idag!";
+    let item = basket.find(product => product.prodName == name)
 
-            container.appendChild(title);
-            container.appendChild(description);
-            container.appendChild(image);
+    if(item){
+        item.prodQty++
+    }
+    else{
+        
+        let product ={
+            prodName: name,
+            prodPrice: price,
+            prodQty: 1
+        };
 
-            while(lightbox.firstChild){
-                lightbox.removeChild(lightbox.firstChild);
-            }
+        basket.push(product);
+    }
+    
 
-            lightbox.appendChild(container);
-            
+    basket.push();
+}
+
+buySwitch2.addEventListener("click", function(){
+    let name = "Switch 2 LOZ-Edition";
+    let price = 9000;
+    addToBasket(name, price);
+    alert("Tillagd i korg!");
+})
+
+buyPS5Pro.addEventListener("click", function(){
+    let name = "Playstation 5 Pro";
+    let price = 20000;
+    addToBasket(name, price);
+    alert("Tillagd i korg!");
+})
+
+buy5090.addEventListener("click", function(){
+    let name = "GeForce RTX 5090";
+    let price = 100000;
+    addToBasket(name, price);
+    alert("Tillagd i korg!");
+})
+
+buySteamCube.addEventListener("click", function(){
+    let name = "Steam Machine";
+    let price = 22000;
+    addToBasket(name, price);
+    alert("Tillagd i korg!");
+})
+
+// Visa kundkorg med "lightbox-metod" när man klickar på korgen
+basketButton.addEventListener("click", function(){
+
+    lightbox.classList.add("active");
+    
+    let basketPage = document.createElement("div");
+    let basketHeader = document.createElement("h3");
+
+    basketPage.classList.add("basketPage");
+    basketHeader.textContent = "Din korg";
+
+    basketPage.appendChild(basketHeader);
+
+    if(basket.length == 0){
+        let basketEmpty = document.createElement("p");
+        basketEmpty.textContent = "Korgen är tom...";
+        basketPage.appendChild(basketEmpty)
+    }
+    else if(basket.length > 0){
+        let basketList = document.createElement("ul");
+        for(let i = 0; i < basket.length; i++){
+            let listItem = document.createElement("li");
+            listItem.textContent = `Vara: ${basket[i].prodName} | Pris: ${basket[i].prodPrice} | Antal: ${basket[i].prodQty} st`;
+            basketList.appendChild(listItem);
         }
-        else if (card.id == "ps5pro"){
+        basketPage.appendChild(basketList);
+    }
 
-            let container = document.createElement("article");
-            let image = document.createElement("img");
-            let title = document.createElement("h3");
-            let description = document.createElement("p");
+    while(lightbox.firstChild){
+        lightbox.removeChild(lightbox.firstChild);
+    }
 
-            container.classList.add("containerStyle");
+    lightbox.appendChild(basketPage);
+})
 
-            image.src = "/images/ps5pro.webp"
-            title.textContent = "Playstation 5 Pro 2TB";
-            description.textContent = "Den mest kraftfulla konsolen i den nuvarande konsol-generationen är här! Med 2TB ultrasnabb SSD och med förmågan att spela PS5-spel i kristallklar 4K och upp till 60FPS! Nu när släppet av Grand Theft Auto VI nalkas, så har dessa konsoler blivit mycket svåra att hitta. Men vilken tur att vi då har flera exemplar av denna konsol, perfekt för dig som vill avnjuta det nya GTA VI (eller andra spel) på bästa möjliga sätt!";
-
-            container.appendChild(title);
-            container.appendChild(description);
-            container.appendChild(image);
-
-            while(lightbox.firstChild){
-                lightbox.removeChild(lightbox.firstChild);
-            }
-
-            lightbox.appendChild(container);
-        }
-
-        else if(card.id == "rtx5090"){
-
-            let container = document.createElement("article");
-            let image = document.createElement("img");
-            let title = document.createElement("h3");
-            let description = document.createElement("p");
-
-            container.classList.add("containerStyle");
-
-            title.textContent = "NVIDIA GeForce RTX 5090";
-
-            container.appendChild(title);
-
-            while(lightbox.firstChild){
-                lightbox.removeChild(lightbox.firstChild);
-            }
-
-            lightbox.appendChild(container);
-        }
-
-        else if(card.id == "steamcube"){
-            
-        }
-    })
+menuButton.addEventListener("click", function(){
+    menu.classList.toggle("open");
 })
 
 lightbox.addEventListener("click", e => {
     if (e.target !== e.currentTarget) return
     lightbox.classList.remove("active");
+})
+
+window.onload(function(){
+
 })
