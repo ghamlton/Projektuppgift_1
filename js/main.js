@@ -2,18 +2,33 @@
 
 // Här förvaras alla varor som har lagts till i korgen
 let basket = [];
+// Felmeddelanden vid kontaktformulär
+let errors = [];
 
 // Flera querySelector för att hämta element från html-filerna
 
+// Knapp och meny för mobilmeny (hamburgare)
 const menuButton = document.querySelector(".menuBtn");
 const menu = document.querySelector(".menu");
 
+// Köp-knappar för de produkter som är tillgängliga
 const buySwitch2 = document.querySelector(".buySwitch");
 const buyPS5Pro = document.querySelector(".buyPS5");
 const buy5090 = document.querySelector(".buyRTX");
 const buySteamCube = document.querySelector(".buyCube");
 
+// Hämtar korg-knappen
 const basketButton = document.querySelector(".basket");
+
+// Hämtar element från form + error-lista
+const errorList = document.querySelector(".errorlist");
+const form = document.querySelector(".contactform");
+const clearBtn = document.querySelector(".clear");
+const nameInput = document.querySelector("#fullname");
+const mailInput = document.querySelector("#email");
+const phoneInput = document.querySelector("#phone");
+const messageInput = document.querySelector("#message");
+
 
 const lightbox = document.createElement("div");
 lightbox.id = "lightbox";
@@ -56,31 +71,81 @@ function loadBasket(){
     }
 }
 
+function validateForm(){
+    errors = [];
+    errorList.innerHTML = "";
+
+    if (nameInput.value.trim() === ""){
+        errors.push("Skriv förnamn och efternamn!");
+    }
+    if(mailInput.value.trim() === ""){
+        errors.push("Skriv in mejladress!");
+    }
+    if(phoneInput.value.trim() === ""){
+        errors.push("Skriv ditt telefonnummer!");
+    }
+    if(messageInput.value.trim() === ""){
+        errors.push("Skriv ett meddelande!");
+    }
+
+    if(errors.length > 0){
+        writeError();
+    }
+    else{
+        alert("Tack för ditt meddelande!");
+    }
+}
+
+function writeError(){
+    for(let i = 0; i < errors.length; i++){
+        let li = document.createElement("li");
+        li.textContent = errors[i];
+        errorList.appendChild(li);
+    }
+}
+
+function clearForm(){
+
+    errors = [];
+    errorList.innerHTML = "";
+
+    form.reset();
+}
+
 // Funktioner för varje köp-knapp på sidan
 // Den skickar med två argument och kör sedan addToBasket()
-buySwitch2.addEventListener("click", function(){
+
+if(buySwitch2){
+    buySwitch2.addEventListener("click", function(){
     let name = "Switch 2 LOZ-Edition";
     let price = 9000;
     addToBasket(name, price);
 });
+}
 
-buyPS5Pro.addEventListener("click", function(){
+if(buyPS5Pro){
+    buyPS5Pro.addEventListener("click", function(){
     let name = "Playstation 5 Pro";
     let price = 20000;
     addToBasket(name, price);
 });
+}
 
-buy5090.addEventListener("click", function(){
+if(buy5090){
+    buy5090.addEventListener("click", function(){
     let name = "GeForce RTX 5090";
     let price = 100000;
     addToBasket(name, price);
 });
+}
 
-buySteamCube.addEventListener("click", function(){
+if(buySteamCube){
+    buySteamCube.addEventListener("click", function(){
     let name = "Steam Machine";
     let price = 22000;
     addToBasket(name, price);
 });
+}
 
 // Visa kundkorg med "lightbox-metod" när man klickar på korg-knappen
 basketButton.addEventListener("click", function(){
@@ -135,6 +200,18 @@ lightbox.addEventListener("click", e => {
     if (e.target !== e.currentTarget) return
     lightbox.classList.remove("active");
 });
+
+if(form){
+    form.addEventListener("submit", function(event){
+    event.preventDefault();
+    validateForm();
+});
+}
+
+if(clearBtn){
+    clearBtn.addEventListener("click", clearForm());
+}
+
 
 // När sidan laddas om så kor den loadBasket() som hämtar varorna från localStorage och basket[] fylls på 
 window.addEventListener("load", function(){
