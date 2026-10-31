@@ -71,6 +71,10 @@ function loadBasket(){
     }
 }
 
+function removefromBasket(){
+
+}
+
 function validateForm(){
     errors = [];
     errorList.innerHTML = "";
@@ -172,9 +176,38 @@ basketButton.addEventListener("click", function(){
         let total = document.createElement("p");
         let sum = 0;
         for(let i = 0; i < basket.length; i++){
+
             let listItem = document.createElement("li");
             listItem.textContent = `Vara: ${basket[i].prodName} | Pris: ${basket[i].prodPrice} | Antal: ${basket[i].prodQty} st`;
+            
+            let removeBtn = document.createElement("button");
+            removeBtn.textContent = "Ta bort";
+            removeBtn.classList.add("removeBtn");
+
+            listItem.appendChild(removeBtn);
             basketList.appendChild(listItem);
+
+            let name = basket[i].prodName;
+            let price = basket[i].prodPrice;
+            let qty = basket[i].prodQty;
+
+            removeBtn.addEventListener("click", function(){
+
+                basket = basket.filter(product => product.prodName !== name)
+                saveBasket();
+                basketList.removeChild(listItem);
+                
+                sum -= price * qty; 
+                total.textContent = "Att betala: " + sum + " kr";
+
+                if(basket.length == 0){
+                    let basketEmpty = document.createElement("p");
+                    basketEmpty.textContent = "Korgen är tom...";
+                    basketPage.appendChild(basketEmpty);
+                    basketPage.removeChild(total);
+                }
+
+            });
             sum += basket[i].prodPrice * basket[i].prodQty;
         }
         total.textContent = "Att betala: " + sum + " kr";
@@ -209,7 +242,7 @@ if(form){
 }
 
 if(clearBtn){
-    clearBtn.addEventListener("click", clearForm());
+    clearBtn.addEventListener("click", clearForm);
 }
 
 
